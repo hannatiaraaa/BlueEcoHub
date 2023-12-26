@@ -1,4 +1,5 @@
 import Landing from 'screens/Landing';
+import {AuthRoutes} from './Auth/auth.routes';
 
 export const MainRoutes = [
   {
@@ -6,4 +7,5 @@ export const MainRoutes = [
     component: Landing,
     options: {headerShown: false},
   },
+  ...AuthRoutes,
 ];
