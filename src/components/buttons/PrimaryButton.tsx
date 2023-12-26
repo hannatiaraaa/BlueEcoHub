@@ -4,7 +4,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   TouchableOpacityProps,
-  DimensionValue,
+  type DimensionValue,
 } from 'react-native';
 import {COLOR} from 'configs/colors';
 import {ms} from 'react-native-size-matters';
@@ -19,6 +19,7 @@ type StyleProps = {
 
 interface Props extends TouchableOpacityProps, StyleProps {
   title?: string;
+  component?: React.ReactNode;
   color?: COLOR;
 }
 
@@ -28,18 +29,25 @@ const PrimaryButton = ({
   color = COLOR.WHITE,
   style,
   width = '100%',
+  component,
   borderColor,
+  ...props
 }: Props) => {
   const styles = useStyles({backgroundColor, width, borderColor});
   return (
-    <TouchableOpacity activeOpacity={0.6} style={[styles.button, style]}>
-      <GlobalText
-        textAlign="center"
-        size={ms(16)}
-        type={FontWeight._600}
-        color={color}>
-        {title}
-      </GlobalText>
+    <TouchableOpacity
+      activeOpacity={0.6}
+      style={[styles.button, style]}
+      {...props}>
+      {component ?? (
+        <GlobalText
+          textAlign="center"
+          size={16}
+          type={FontWeight._600}
+          color={color}>
+          {title}
+        </GlobalText>
+      )}
     </TouchableOpacity>
   );
 };
