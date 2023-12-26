@@ -5,8 +5,13 @@ import {FontWeight} from 'types/components/GlobalText.type';
 import {COLOR, TRANSPARENCY_HEX_COLOR} from 'configs/colors';
 import {ms} from 'react-native-size-matters';
 import PrimaryButton from 'components/buttons/PrimaryButton';
+import {useCurrentNavigation} from 'hooks/useCurrentNavigation';
 
 const LandingAuth = () => {
+  const {navigate} = useCurrentNavigation();
+  const onLoginPress = () => navigate('Login');
+  const onRegisterPress = () => navigate('Register');
+
   return (
     <ImageBackground
       source={require('assets/images/landing.png')}
@@ -15,14 +20,14 @@ const LandingAuth = () => {
       <View style={styles.container}>
         <View style={styles.content}>
           <GlobalText
-            size={ms(18)}
+            size={18}
             color={COLOR.WHITE}
             type={FontWeight._700}
             textAlign="center">
             Empower Ocean Beyond Limits
           </GlobalText>
           <GlobalText
-            size={ms(16)}
+            size={16}
             color={COLOR.WHITE}
             type={FontWeight._500}
             textAlign="center">
@@ -31,11 +36,12 @@ const LandingAuth = () => {
           </GlobalText>
         </View>
         <View style={styles.content}>
-          <PrimaryButton title="Login" />
+          <PrimaryButton title="Login" onPress={onLoginPress} />
           <PrimaryButton
             title="Register"
             color={COLOR.DARK_TEXT}
             backgroundColor={COLOR.LIGHT_BACKGROUND}
+            onPress={onRegisterPress}
           />
         </View>
       </View>
