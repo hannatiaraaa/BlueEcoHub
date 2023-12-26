@@ -14,6 +14,10 @@ export const navigate = <ParamList extends {}>(
   nav.current?.navigate(name, params);
 };
 
+export const popToTop = () => {
+  nav.current?.dispatch(StackActions.popToTop());
+};
+
 export const useCurrentNavigation = () => {
   const push = <ParamList extends {}>(name: string, params?: ParamList) => {
     nav.current?.dispatch(StackActions.push(name, params));
